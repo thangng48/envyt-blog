@@ -1,0 +1,7 @@
+baseURL = "https://envyt.me"
+languageCode = "en-us"
+title = "Me against my thoughts"
+theme = "PaperMod"
+
+[params]
+  defaultTheme = "light"
