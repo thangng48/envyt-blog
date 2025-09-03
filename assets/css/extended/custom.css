@@ -1,0 +1,143 @@
+/* Custom CSS for layout improvements */
+
+/* Featured label styling */
+.featured-label {
+    display: inline-block;
+    background-color: #ff6b35;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+/* About page profile section */
+.about-profile {
+    margin-bottom: 2rem;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.profile-info h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--primary);
+}
+
+.profile-info .tagline {
+    color: var(--secondary);
+    font-size: 1.1rem;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Profile section improvements */
+.profile {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.profile .profile_inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.profile img {
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.profile h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--primary);
+}
+
+.profile span {
+    color: var(--secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Header improvements */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Navigation menu */
+.menu {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 400;
+}
+
+/* Social icons */
+.social-icons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Post entries styling */
+.post-entry {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.post-entry:last-child {
+    border-bottom: none;
+}
+
+.entry-header h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0.5rem 0 0.25rem 0;
+    color: var(--primary);
+}
+
+.entry-footer {
+    color: var(--secondary);
+    font-size: 0.85rem;
+}
+
+/* Clean spacing */
+.main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}

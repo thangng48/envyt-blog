@@ -1,7 +1,20 @@
-baseURL = "https://envyt.me"
+baseURL = "https://blog.envyt.me"
 languageCode = "en-us"
-title = "Me against my thoughts"
+title = "Me, against my thoughts"
 theme = "PaperMod"
 
 [params]
   defaultTheme = "light"
+  mainSections = ["posts"]
+  
+[[menu.main]]
+  identifier = "about"
+  name = "About"
+  url = "/about/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "contact"
+  name = "Contact"
+  url = "/contact/"
+  weight = 20
