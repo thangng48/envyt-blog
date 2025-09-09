@@ -123,6 +123,12 @@ tags:
 <body class="antialiased">
 
     <div class="container mx-auto px-4 py-8 max-w-7xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003366] mb-2">Cẩm Nang Đầu Tư Quỹ ETF Toàn Diện</h1>
+            <p class="text-lg text-gray-600">Phân tích, so sánh và giả lập danh mục tại thị trường Việt Nam</p>
+        </header>
+
         <nav class="sticky top-0 z-10 bg-[#F9F7F3]/80 backdrop-blur-md py-4 mb-8 border-b">
             <div class="flex flex-wrap justify-center items-center gap-2 md:gap-4">
                 <button class="nav-button active" data-target="section-intro">Tổng quan</button>
@@ -160,6 +166,36 @@ tags:
                             </ul>
                         </div>
                     </div>
+
+                    <div class="my-8 border-t pt-8">
+                        <h3 class="text-xl font-bold text-[#003366] mb-4 text-center">NAV là gì và cách tính?</h3>
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <p class="text-gray-700 mb-4">
+                                    <strong>NAV (Net Asset Value)</strong> là giá trị tài sản ròng của một quỹ. Đối với ETF, chúng ta thường quan tâm đến <strong>NAV/CCQ</strong>, tức là giá trị tài sản ròng trên mỗi chứng chỉ quỹ. Đây chính là giá trị thực của một chứng chỉ quỹ tại một thời điểm nhất định.
+                                </p>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <p class="font-semibold text-center text-gray-800">Công thức tính NAV trên mỗi Chứng chỉ quỹ (CCQ):</p>
+                                    <p class="text-center font-mono text-sm mt-2 bg-white p-2 rounded">
+                                        (Tổng Tài sản - Tổng Nợ) / Tổng số CCQ đang lưu hành
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+                                <h4 class="font-semibold text-blue-800 mb-2">Ví dụ minh họa:</h4>
+                                <ul class="space-y-1 text-sm text-blue-700">
+                                    <li>Một quỹ ETF có tổng tài sản (cổ phiếu, tiền mặt): <span class="font-bold">110 tỷ VND</span></li>
+                                    <li>Quỹ có các khoản nợ (phí quản lý, ...): <span class="font-bold">10 tỷ VND</span></li>
+                                    <li>Tổng số CCQ đang lưu hành: <span class="font-bold">10.000.000 CCQ</span></li>
+                                </ul>
+                                <hr class="my-2 border-blue-200">
+                                <p class="text-sm text-blue-700">
+                                    ➔ NAV/CCQ = (110 tỷ - 10 tỷ) / 10.000.000 = <span class="font-bold text-lg">10.000 VND</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <h3 class="text-xl font-bold text-[#003366] mb-4 text-center">Quy trình hoạt động của một quỹ ETF</h3>
                     <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4">
@@ -213,8 +249,16 @@ tags:
                             <h3 class="font-semibold text-lg mb-3">Nhập thông tin giao dịch</h3>
                             <div class="space-y-4">
                                 <div>
-                                    <label for="investmentAmount" class="block text-sm font-medium text-gray-700">Số tiền đầu tư (VND)</label>
-                                    <input type="number" id="investmentAmount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="100000000">
+                                    <label for="quantity" class="block text-sm font-medium text-gray-700">Số lượng chứng chỉ quỹ (CCQ) mua</label>
+                                    <input type="number" id="quantity" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="10000">
+                                </div>
+                                <div>
+                                    <label for="navBuy" class="block text-sm font-medium text-gray-700">Giá NAV lúc mua (VND/CCQ)</label>
+                                    <input type="number" id="navBuy" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="15000">
+                                </div>
+                                <div>
+                                    <label for="navSell" class="block text-sm font-medium text-gray-700">Giá NAV lúc bán (VND/CCQ)</label>
+                                    <input type="number" id="navSell" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="20000">
                                 </div>
                                 <div>
                                     <label for="holdingYears" class="block text-sm font-medium text-gray-700">Thời gian nắm giữ (năm)</label>
@@ -239,10 +283,12 @@ tags:
                             <div class="mt-4 text-xs text-gray-500">
                                 <p class="font-semibold">Công thức tham khảo:</p>
                                 <ul class="list-disc list-inside">
-                                    <li><strong>Phí giao dịch (mua + bán):</strong> (Số tiền đầu tư * % Phí GD) * 2</li>
-                                    <li><strong>Phí quản lý (tổng):</strong> Số tiền đầu tư * % Phí QL * Số năm</li>
-                                    <li><strong>Thuế TNCN (khi bán):</strong> Giá trị bán * 0.1%</li>
-                                    <li><strong class="font-bold">Lưu ý:</strong> Đây là tính toán ước lượng, chưa bao gồm yếu tố lãi kép và thuế cổ tức (nếu có).</li>
+                                    <li><strong>Giá trị đầu tư:</strong> Số lượng CCQ * NAV mua</li>
+                                    <li><strong>Giá trị bán:</strong> Số lượng CCQ * NAV bán</li>
+                                    <li><strong>Phí giao dịch:</strong> Giá trị giao dịch * % Phí GD</li>
+                                    <li><strong>Phí quản lý:</strong> Giá trị đầu tư * % Phí QL * Số năm</li>
+                                    <li><strong>Thuế TNCN:</strong> Giá trị bán * 0.1%</li>
+                                    <li><strong class="font-bold">Lưu ý:</strong> Tính toán này giả định nhà đầu tư chỉ thực hiện 1 lệnh mua và 1 lệnh bán toàn bộ. Đây là ước lượng, chưa bao gồm yếu tố lãi kép và thuế cổ tức (nếu có).</li>
                                 </ul>
                             </div>
                         </div>
@@ -398,33 +444,49 @@ tags:
             }
 
             document.getElementById('calculateBtn').addEventListener('click', () => {
-                const amount = parseFloat(document.getElementById('investmentAmount').value);
+                const quantity = parseFloat(document.getElementById('quantity').value);
+                const navBuy = parseFloat(document.getElementById('navBuy').value);
+                const navSell = parseFloat(document.getElementById('navSell').value);
                 const years = parseFloat(document.getElementById('holdingYears').value);
                 const mgmtFee = parseFloat(document.getElementById('managementFee').value) / 100;
                 const tradeFee = parseFloat(document.getElementById('tradingFee').value) / 100;
 
-                if (isNaN(amount) || isNaN(years) || isNaN(mgmtFee) || isNaN(tradeFee)) {
+                if (isNaN(quantity) || isNaN(navBuy) || isNaN(navSell) || isNaN(years) || isNaN(mgmtFee) || isNaN(tradeFee)) {
                     alert('Vui lòng nhập đầy đủ thông tin hợp lệ.');
                     return;
                 }
+                
+                const investmentAmount = quantity * navBuy;
+                const saleAmount = quantity * navSell;
+                const grossProfit = saleAmount - investmentAmount;
 
-                const buyFee = amount * tradeFee;
-                const sellFee = amount * tradeFee; 
+                const buyFee = investmentAmount * tradeFee;
+                const sellFee = saleAmount * tradeFee;
                 const totalTradeFee = buyFee + sellFee;
-                const totalMgmtFee = amount * mgmtFee * years;
-                const taxOnSale = amount * 0.001;
-                const totalCost = totalTradeFee + totalMgmtFee + taxOnSale;
+                const totalMgmtFee = investmentAmount * mgmtFee * years;
+                const taxOnSale = saleAmount * 0.001;
+                const totalCostAndTax = totalTradeFee + totalMgmtFee + taxOnSale;
+                const netProfit = grossProfit - totalCostAndTax;
 
                 const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
+                
+                const profitClass = grossProfit >= 0 ? 'text-green-600' : 'text-red-600';
+                const netProfitClass = netProfit >= 0 ? 'text-green-700 font-bold' : 'text-red-700 font-bold';
 
                 const resultDiv = document.getElementById('costResult');
                 resultDiv.innerHTML = `
-                    <div class="flex justify-between"><span class="text-gray-600">Phí giao dịch mua:</span> <span class="font-semibold">${formatter.format(buyFee)}</span></div>
-                    <div class="flex justify-between"><span class="text-gray-600">Phí giao dịch bán (ước tính):</span> <span class="font-semibold">${formatter.format(sellFee)}</span></div>
-                    <div class="flex justify-between"><span class="text-gray-600">Tổng phí quản lý (${years} năm):</span> <span class="font-semibold">${formatter.format(totalMgmtFee)}</span></div>
-                    <div class="flex justify-between"><span class="text-gray-600">Thuế TNCN khi bán (0.1%):</span> <span class="font-semibold">${formatter.format(taxOnSale)}</span></div>
+                    <div class="flex justify-between text-sm"><span class="text-gray-600">Tổng giá trị đầu tư:</span> <span class="font-semibold">${formatter.format(investmentAmount)}</span></div>
+                    <div class="flex justify-between text-sm"><span class="text-gray-600">Tổng giá trị khi bán:</span> <span class="font-semibold">${formatter.format(saleAmount)}</span></div>
+                    <div class="flex justify-between text-sm"><span class="text-gray-600">Lợi nhuận gộp:</span> <span class="font-semibold ${profitClass}">${formatter.format(grossProfit)}</span></div>
                     <hr class="my-2">
-                    <div class="flex justify-between text-lg"><span class="font-bold text-[#003366]">Tổng chi phí ước tính:</span> <span class="font-bold text-[#003366]">${formatter.format(totalCost)}</span></div>
+                    <p class="text-sm font-semibold text-gray-800">Chi tiết phí & thuế:</p>
+                    <div class="flex justify-between text-xs"><span class="text-gray-600">Phí giao dịch mua:</span> <span>${formatter.format(buyFee)}</span></div>
+                    <div class="flex justify-between text-xs"><span class="text-gray-600">Phí giao dịch bán:</span> <span>${formatter.format(sellFee)}</span></div>
+                    <div class="flex justify-between text-xs"><span class="text-gray-600">Tổng phí quản lý (${years} năm):</span> <span>${formatter.format(totalMgmtFee)}</span></div>
+                    <div class="flex justify-between text-xs"><span class="text-gray-600">Thuế TNCN khi bán (0.1%):</span> <span>${formatter.format(taxOnSale)}</span></div>
+                    <hr class="my-2">
+                    <div class="flex justify-between text-sm"><span class="font-bold text-gray-700">Tổng chi phí & thuế:</span> <span class="font-bold">${formatter.format(totalCostAndTax)}</span></div>
+                    <div class="flex justify-between text-lg mt-2 pt-2 border-t"><span class="font-bold text-[#003366]">Lợi nhuận ròng:</span> <span class="${netProfitClass}">${formatter.format(netProfit)}</span></div>
                 `;
             });
             
