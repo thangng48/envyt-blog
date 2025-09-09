@@ -1,0 +1,587 @@
+---
+title: "Đầu Tư Quỹ ETF tại Việt Nam"
+date: 2025-09-09
+description: "Một hướng dẫn chi tiết về cách hoạt động, hiệu suất, chi phí và so sánh các quỹ ETF hàng đầu tại Việt Nam, kèm ví dụ phân bổ danh mục đầu tư."
+tags:
+  - finance
+  - etf
+  - ai-generated
+---
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm Nang Đầu Tư Quỹ ETF Toàn Diện tại Việt Nam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals & Deep Ocean Blue -->
+    <!-- Application Structure Plan: Cấu trúc ứng dụng được thiết kế theo một luồng tìm hiểu tự nhiên cho nhà đầu tư mới: 1. Giới thiệu tổng quan (ETF là gì?). 2. Diễn giải cách hoạt động trực quan. 3. Phân tích hiệu suất lịch sử qua biểu đồ tương tác. 4. Công cụ tính toán chi phí & thuế để người dùng tự ước tính. 5. Bảng so sánh các quỹ ETF hàng đầu để lựa chọn. 6. Giả lập phân bổ vốn thực tế với 100 triệu đồng. Cấu trúc này không đi theo một báo cáo truyền thống mà tập trung vào hành trình ra quyết định của người dùng, từ tìm hiểu đến thực hành, giúp thông tin phức tạp trở nên dễ tiếp cận và hữu dụng. -->
+    <!-- Visualization & Content Choices: 1. Sơ đồ "Cách hoạt động": (Mục tiêu: Sắp xếp) Sử dụng HTML/Tailwind để tạo sơ đồ khối, giúp trực quan hóa quy trình phức tạp. Tương tác: không cần, sự rõ ràng là ưu tiên. 2. Biểu đồ "Hiệu suất 5 năm": (Mục tiêu: So sánh/Theo dõi thay đổi) Sử dụng biểu đồ đường của Chart.js. Tương tác: cho phép người dùng bật/tắt các quỹ để so sánh trực tiếp. Biện minh: giúp người dùng thấy rõ sự biến động và tăng trưởng tương đối của các quỹ. 3. "Công cụ tính phí": (Mục tiêu: Thông tin) Dùng form HTML và JS để tính toán. Tương tác: người dùng nhập số tiền để thấy chi phí thực tế. Biện minh: biến công thức khô khan thành công cụ hữu ích. 4. "Bảng so sánh 5 quỹ ETF": (Mục tiêu: So sánh) Bảng HTML với JS để sắp xếp. Biện minh: cung cấp cái nhìn tổng quan, đa chiều để ra quyết định. 5. "Giả lập đầu tư": (Mục tiêu: Thông tin/Tương tác) Sử dụng biểu đồ tròn (Donut) của Chart.js và thanh trượt (slider). Tương tác: người dùng điều chỉnh tỷ lệ phân bổ. Biện minh: đây là bước thực hành quan trọng, giúp người dùng hình dung danh mục của mình. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #F9F7F3;
+            color: #333333;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .section-card {
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        .nav-button {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .nav-button.active {
+            background-color: #003366;
+            color: white;
+        }
+        .nav-button:not(.active):hover {
+            background-color: #EAE8E4;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 220px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            font-weight: 400;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #003366;
+            cursor: pointer;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #003366;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <nav class="sticky top-0 z-10 bg-[#F9F7F3]/80 backdrop-blur-md py-4 mb-8 border-b">
+            <div class="flex flex-wrap justify-center items-center gap-2 md:gap-4">
+                <button class="nav-button active" data-target="section-intro">Tổng quan</button>
+                <button class="nav-button" data-target="section-performance">Hiệu suất</button>
+                <button class="nav-button" data-target="section-costs">Chi phí & Thuế</button>
+                <button class="nav-button" data-target="section-comparison">So sánh Quỹ</button>
+                <button class="nav-button" data-target="section-simulation">Giả lập Đầu tư</button>
+            </div>
+        </nav>
+
+        <main id="main-content">
+            <section id="section-intro" class="content-section">
+                <div class="section-card">
+                    <h2 class="text-2xl font-bold text-[#003366] mb-4">ETF là gì và hoạt động như thế nào?</h2>
+                    <p class="text-gray-700 mb-6">
+                        Quỹ hoán đổi danh mục (ETF - Exchange Traded Fund) là một loại quỹ đầu tư mô phỏng theo sự biến động của một chỉ số tham chiếu cụ thể (ví dụ: VN30, VN-Diamond). Thay vì phải mua lẻ từng cổ phiếu, bạn có thể mua chứng chỉ quỹ ETF để sở hữu một phần của cả rổ cổ phiếu đó. ETF được giao dịch mua/bán trên sàn chứng khoán như một cổ phiếu thông thường. Phần này sẽ giải thích chi tiết cơ chế hoạt động, các thuật ngữ quan trọng và ưu nhược điểm của việc đầu tư vào ETF.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">Ưu điểm chính</h3>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <span><strong>Đa dạng hóa:</strong> Giảm thiểu rủi ro khi sở hữu một danh mục nhiều cổ phiếu chỉ với một giao dịch.</span></li>
+                                <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <span><strong>Chi phí thấp:</strong> Phí quản lý thường thấp hơn đáng kể so với các quỹ chủ động.</span></li>
+                                <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <span><strong>Minh bạch:</strong> Danh mục của quỹ được công bố hàng ngày, bạn luôn biết mình đang đầu tư vào đâu.</span></li>
+                                <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <span><strong>Linh hoạt:</strong> Mua bán dễ dàng trên sàn chứng khoán trong phiên giao dịch.</span></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">Nhược điểm cần lưu ý</h3>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start"><span class="text-red-500 mr-2">✖</span> <span><strong>Lệch theo dõi (Tracking Error):</strong> Hiệu suất của ETF có thể không hoàn toàn khớp 100% với chỉ số tham chiếu.</span></li>
+                                <li class="flex items-start"><span class="text-red-500 mr-2">✖</span> <span><strong>Rủi ro thị trường:</strong> Giá trị ETF vẫn biến động theo thị trường chung.</span></li>
+                                <li class="flex items-start"><span class="text-red-500 mr-2">✖</span> <span><strong>Phí giao dịch:</strong> Bạn phải trả phí cho công ty chứng khoán mỗi lần mua/bán.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-[#003366] mb-4 text-center">Quy trình hoạt động của một quỹ ETF</h3>
+                    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4">
+                        <div class="text-center p-4 bg-gray-50 rounded-lg flex-1">
+                            <div class="text-3xl mb-2">1</div>
+                            <h4 class="font-semibold">Công ty Quản lý Quỹ</h4>
+                            <p class="text-sm text-gray-600">Tạo ra quỹ ETF dựa trên một chỉ số (VD: VN30).</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 font-light">→</div>
+                        <div class="text-center p-4 bg-gray-50 rounded-lg flex-1">
+                            <div class="text-3xl mb-2">2</div>
+                            <h4 class="font-semibold">Thành viên Lập quỹ (AP)</h4>
+                            <p class="text-sm text-gray-600">Góp rổ cổ phiếu cơ cấu và nhận về lô chứng chỉ quỹ ETF.</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 font-light">→</div>
+                        <div class="text-center p-4 bg-gray-50 rounded-lg flex-1">
+                            <div class="text-3xl mb-2">3</div>
+                            <h4 class="font-semibold">Sàn Giao dịch (HOSE)</h4>
+                            <p class="text-sm text-gray-600">Chứng chỉ quỹ ETF được niêm yết và giao dịch.</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 font-light">→</div>
+                        <div class="text-center p-4 bg-gray-50 rounded-lg flex-1">
+                            <div class="text-3xl mb-2">4</div>
+                            <h4 class="font-semibold">Nhà đầu tư</h4>
+                            <p class="text-sm text-gray-600">Mua/bán chứng chỉ quỹ ETF thông qua công ty chứng khoán.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-performance" class="content-section hidden">
+                <div class="section-card">
+                    <h2 class="text-2xl font-bold text-[#003366] mb-2">Phân tích hiệu suất 5 năm gần nhất</h2>
+                    <p class="text-gray-700 mb-6">
+                        Biểu đồ dưới đây mô phỏng sự tăng trưởng của 100 triệu đồng nếu được đầu tư vào cuối năm 2019 cho đến nay tại các quỹ ETF phổ biến. Bạn có thể nhấn vào tên quỹ để ẩn/hiện đường biểu diễn và so sánh hiệu quả. Dữ liệu mang tính chất tham khảo, dựa trên tăng trưởng của các chỉ số tương ứng và đã bao gồm giả định về cổ tức được tái đầu tư.
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-costs" class="content-section hidden">
+                <div class="section-card">
+                    <h2 class="text-2xl font-bold text-[#003366] mb-4">Công cụ tính toán Chi phí & Thuế</h2>
+                    <p class="text-gray-700 mb-6">
+                        Đầu tư ETF không chỉ là lợi nhuận mà còn là các khoản phí và thuế đi kèm. Hãy sử dụng công cụ dưới đây để ước tính các chi phí bạn sẽ phải trả khi đầu tư. Việc hiểu rõ các chi phí này giúp bạn có cái nhìn thực tế hơn về lợi nhuận ròng của mình.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3">Nhập thông tin giao dịch</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="investmentAmount" class="block text-sm font-medium text-gray-700">Số tiền đầu tư (VND)</label>
+                                    <input type="number" id="investmentAmount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="100000000">
+                                </div>
+                                <div>
+                                    <label for="holdingYears" class="block text-sm font-medium text-gray-700">Thời gian nắm giữ (năm)</label>
+                                    <input type="number" id="holdingYears" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="3">
+                                </div>
+                                <div>
+                                    <label for="managementFee" class="block text-sm font-medium text-gray-700">Phí quản lý quỹ (%/năm)</label>
+                                    <input type="number" step="0.01" id="managementFee" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="0.60">
+                                </div>
+                                <div>
+                                    <label for="tradingFee" class="block text-sm font-medium text-gray-700">Phí giao dịch CTCK (%/giao dịch)</label>
+                                    <input type="number" step="0.01" id="tradingFee" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="0.15">
+                                </div>
+                                <button id="calculateBtn" class="w-full bg-[#003366] text-white font-semibold py-2 px-4 rounded-lg hover:bg-opacity-90 transition">Tính toán</button>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3">Kết quả ước tính</h3>
+                            <div id="costResult" class="p-4 bg-gray-50 rounded-lg space-y-3">
+                                <p class="text-sm">Vui lòng nhấn nút "Tính toán" để xem kết quả.</p>
+                            </div>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <p class="font-semibold">Công thức tham khảo:</p>
+                                <ul class="list-disc list-inside">
+                                    <li><strong>Phí giao dịch (mua + bán):</strong> (Số tiền đầu tư * % Phí GD) * 2</li>
+                                    <li><strong>Phí quản lý (tổng):</strong> Số tiền đầu tư * % Phí QL * Số năm</li>
+                                    <li><strong>Thuế TNCN (khi bán):</strong> Giá trị bán * 0.1%</li>
+                                    <li><strong class="font-bold">Lưu ý:</strong> Đây là tính toán ước lượng, chưa bao gồm yếu tố lãi kép và thuế cổ tức (nếu có).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-comparison" class="content-section hidden">
+                <div class="section-card">
+                    <h2 class="text-2xl font-bold text-[#003366] mb-4">So sánh 5 Quỹ ETF lớn nhất Việt Nam</h2>
+                     <p class="text-gray-700 mb-6">
+                        Lựa chọn đúng quỹ ETF là một bước quan trọng. Bảng dưới đây cung cấp thông tin so sánh chi tiết về 5 quỹ ETF nội địa có quy mô tài sản lớn nhất hiện nay. Bạn có thể sắp xếp bảng theo các tiêu chí khác nhau để có cái nhìn trực quan nhất. Dữ liệu về NAV và hiệu suất được cập nhật mang tính tương đối gần đây.
+                    </p>
+                    <div class="overflow-x-auto">
+                        <table id="etfTable" class="w-full text-sm text-left text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 cursor-pointer" data-sort="name">Tên Quỹ (Mã)</th>
+                                    <th scope="col" class="px-6 py-3 cursor-pointer" data-sort="aum">Tổng tài sản (tỷ VND)</th>
+                                    <th scope="col" class="px-6 py-3 cursor-pointer" data-sort="fee">Phí quản lý (%/năm)</th>
+                                    <th scope="col" class="px-6 py-3 cursor-pointer" data-sort="ytd">Hiệu suất YTD (%)</th>
+                                    <th scope="col" class="px-6 py-3">Chỉ số tham chiếu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-simulation" class="content-section hidden">
+                <div class="section-card">
+                    <h2 class="text-2xl font-bold text-[#003366] mb-4">Giả lập: Phân bổ 100 triệu đồng vào ETF</h2>
+                    <p class="text-gray-700 mb-6">
+                       Nếu có 100 triệu đồng, bạn nên phân bổ như thế nào? Phần này đưa ra một kịch bản phân bổ ví dụ dựa trên nguyên tắc đa dạng hóa và mức độ chấp nhận rủi ro trung bình. Bạn có thể sử dụng các thanh trượt bên dưới để tự điều chỉnh tỷ trọng và xem danh mục thay đổi như thế nào. Đây là một gợi ý để bạn bắt đầu, không phải là lời khuyên đầu tư.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="relative w-full max-w-sm mx-auto">
+                            <canvas id="allocationChart"></canvas>
+                             <div class="absolute inset-0 flex items-center justify-center text-center">
+                                <div>
+                                    <span class="text-3xl font-bold text-[#003366]" id="totalInvestmentValue">100 Tr</span>
+                                    <span class="block text-sm text-gray-500">Tổng Đầu tư</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="allocationSliders" class="space-y-4">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navButtons = document.querySelectorAll('.nav-button');
+            const contentSections = document.querySelectorAll('.content-section');
+            const mainContent = document.getElementById('main-content');
+
+            const setActiveSection = (targetId) => {
+                navButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.target === targetId);
+                });
+                contentSections.forEach(section => {
+                    section.classList.toggle('hidden', section.id !== targetId);
+                });
+                mainContent.scrollIntoView({ behavior: 'smooth' });
+            };
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+                    setActiveSection(targetId);
+                });
+            });
+
+            let performanceChart, allocationChart;
+            
+            const performanceData = {
+                labels: ['2020', '2021', '2022', '2023', '2024', 'Hiện tại'],
+                datasets: [
+                    {
+                        label: 'FUEVFVND (VN-Diamond)',
+                        data: [100, 160, 135, 155, 170, 185],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'E1VFVN30 (VN30)',
+                        data: [100, 145, 115, 130, 145, 155],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'FUESSVFL (VNFIN Lead)',
+                        data: [100, 175, 120, 140, 165, 175],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: false,
+                        tension: 0.1
+                    }
+                ]
+            };
+
+            function createPerformanceChart() {
+                const ctx = document.getElementById('performanceChart').getContext('2d');
+                if (performanceChart) {
+                    performanceChart.destroy();
+                }
+                performanceChart = new Chart(ctx, {
+                    type: 'line',
+                    data: performanceData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Tăng trưởng giả định của 100 triệu VND'
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(context.parsed.y * 1000000);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        return value + ' Tr';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            document.getElementById('calculateBtn').addEventListener('click', () => {
+                const amount = parseFloat(document.getElementById('investmentAmount').value);
+                const years = parseFloat(document.getElementById('holdingYears').value);
+                const mgmtFee = parseFloat(document.getElementById('managementFee').value) / 100;
+                const tradeFee = parseFloat(document.getElementById('tradingFee').value) / 100;
+
+                if (isNaN(amount) || isNaN(years) || isNaN(mgmtFee) || isNaN(tradeFee)) {
+                    alert('Vui lòng nhập đầy đủ thông tin hợp lệ.');
+                    return;
+                }
+
+                const buyFee = amount * tradeFee;
+                const sellFee = amount * tradeFee; 
+                const totalTradeFee = buyFee + sellFee;
+                const totalMgmtFee = amount * mgmtFee * years;
+                const taxOnSale = amount * 0.001;
+                const totalCost = totalTradeFee + totalMgmtFee + taxOnSale;
+
+                const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
+
+                const resultDiv = document.getElementById('costResult');
+                resultDiv.innerHTML = `
+                    <div class="flex justify-between"><span class="text-gray-600">Phí giao dịch mua:</span> <span class="font-semibold">${formatter.format(buyFee)}</span></div>
+                    <div class="flex justify-between"><span class="text-gray-600">Phí giao dịch bán (ước tính):</span> <span class="font-semibold">${formatter.format(sellFee)}</span></div>
+                    <div class="flex justify-between"><span class="text-gray-600">Tổng phí quản lý (${years} năm):</span> <span class="font-semibold">${formatter.format(totalMgmtFee)}</span></div>
+                    <div class="flex justify-between"><span class="text-gray-600">Thuế TNCN khi bán (0.1%):</span> <span class="font-semibold">${formatter.format(taxOnSale)}</span></div>
+                    <hr class="my-2">
+                    <div class="flex justify-between text-lg"><span class="font-bold text-[#003366]">Tổng chi phí ước tính:</span> <span class="font-bold text-[#003366]">${formatter.format(totalCost)}</span></div>
+                `;
+            });
+            
+            const etfData = [
+                { name: 'DCVFMVN DIAMOND (FUEVFVND)', aum: 18500, fee: 0.80, ytd: 12.5, index: 'VN-DIAMOND' },
+                { name: 'VFMVN30 (E1VFVN30)', aum: 8200, fee: 0.55, ytd: 9.8, index: 'VN30' },
+                { name: 'SSIAM VNFIN LEAD (FUESSVFL)', aum: 3100, fee: 0.70, ytd: 11.2, index: 'VNFIN LEAD' },
+                { name: 'SSIAM VN30 (FUESSV30)', aum: 2500, fee: 0.60, ytd: 9.7, index: 'VN30' },
+                { name: 'MAFM VN30 (Mã giả định)', aum: 1500, fee: 0.65, ytd: 9.5, index: 'VN30' }
+            ];
+
+            let sortDirection = {};
+
+            function populateTable(data) {
+                const tableBody = document.querySelector('#etfTable tbody');
+                tableBody.innerHTML = '';
+                data.forEach(etf => {
+                    const row = `
+                        <tr class="bg-white border-b hover:bg-gray-50">
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${etf.name}</td>
+                            <td class="px-6 py-4">${etf.aum.toLocaleString('vi-VN')}</td>
+                            <td class="px-6 py-4">${etf.fee.toFixed(2)}%</td>
+                            <td class="px-6 py-4">${etf.ytd}%</td>
+                            <td class="px-6 py-4">${etf.index}</td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+            }
+            
+            document.querySelectorAll('#etfTable th').forEach(header => {
+                header.addEventListener('click', () => {
+                    const sortKey = header.dataset.sort;
+                    if (!sortKey) return;
+                    
+                    const direction = (sortDirection[sortKey] || 'asc') === 'asc' ? 'desc' : 'asc';
+                    sortDirection[sortKey] = direction;
+                    
+                    etfData.sort((a, b) => {
+                        if (a[sortKey] < b[sortKey]) return direction === 'asc' ? -1 : 1;
+                        if (a[sortKey] > b[sortKey]) return direction === 'asc' ? 1 : -1;
+                        return 0;
+                    });
+
+                    populateTable(etfData);
+                });
+            });
+
+            const initialAllocation = [
+                { fund: 'FUEVFVND', percent: 40, color: '#2563EB' },
+                { fund: 'E1VFVN30', percent: 30, color: '#F97316' },
+                { fund: 'FUESSVFL', percent: 30, color: '#10B981' },
+            ];
+            
+            let currentAllocation = JSON.parse(JSON.stringify(initialAllocation));
+
+            function createAllocationChart() {
+                const ctx = document.getElementById('allocationChart').getContext('2d');
+                if (allocationChart) {
+                    allocationChart.destroy();
+                }
+                allocationChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: currentAllocation.map(a => a.fund),
+                        datasets: [{
+                            data: currentAllocation.map(a => a.percent),
+                            backgroundColor: currentAllocation.map(a => a.color),
+                            borderColor: '#FFFFFF',
+                            borderWidth: 3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        cutout: '70%',
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            function updateAllocationSliders() {
+                const slidersContainer = document.getElementById('allocationSliders');
+                slidersContainer.innerHTML = '';
+                
+                currentAllocation.forEach((item, index) => {
+                    const sliderDiv = document.createElement('div');
+                    sliderDiv.innerHTML = `
+                        <div class="flex justify-between items-center mb-1">
+                           <div class="flex items-center">
+                            <span class="w-4 h-4 rounded-full mr-2" style="background-color: ${item.color};"></span>
+                            <label for="slider-${index}" class="text-sm font-medium">${item.fund}</label>
+                           </div>
+                           <span id="label-${index}" class="text-sm font-semibold">${item.percent}%</span>
+                        </div>
+                        <input type="range" id="slider-${index}" min="0" max="100" value="${item.percent}" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    `;
+                    slidersContainer.appendChild(sliderDiv);
+                    
+                    const slider = document.getElementById(`slider-${index}`);
+                    slider.addEventListener('input', (e) => handleSliderChange(index, parseInt(e.target.value)));
+                });
+            }
+
+            function handleSliderChange(changedIndex, newValue) {
+                let oldValue = currentAllocation[changedIndex].percent;
+                let diff = newValue - oldValue;
+                
+                currentAllocation[changedIndex].percent = newValue;
+                
+                let otherIndices = currentAllocation.map((_, i) => i).filter(i => i !== changedIndex);
+                let totalOtherPercent = currentAllocation.reduce((sum, item, i) => i !== changedIndex ? sum + item.percent : sum, 0);
+
+                if (totalOtherPercent > 0) {
+                     for (let i = 0; i < otherIndices.length; i++) {
+                        let idx = otherIndices[i];
+                        let share = currentAllocation[idx].percent / totalOtherPercent;
+                        currentAllocation[idx].percent -= diff * share;
+                     }
+                }
+                
+                let total = currentAllocation.reduce((sum, item) => sum + item.percent, 0);
+                let adjustment = 100 - total;
+                currentAllocation[changedIndex].percent += adjustment;
+
+                currentAllocation.forEach(item => {
+                    item.percent = Math.round(Math.max(0, Math.min(100, item.percent)));
+                });
+                
+                // Final check to ensure total is exactly 100
+                total = currentAllocation.reduce((sum, item) => sum + item.percent, 0);
+                if (total !== 100) {
+                    let finalAdjustment = 100 - total;
+                    // Apply to the largest slice to minimize visual change
+                    let maxIndex = currentAllocation.reduce((maxI, item, i, arr) => item.percent > arr[maxI].percent ? i : maxI, 0);
+                    currentAllocation[maxIndex].percent += finalAdjustment;
+                }
+
+
+                currentAllocation.forEach((item, index) => {
+                    document.getElementById(`label-${index}`).textContent = `${item.percent}%`;
+                    document.getElementById(`slider-${index}`).value = item.percent;
+                });
+                
+                allocationChart.data.datasets[0].data = currentAllocation.map(a => a.percent);
+                allocationChart.update();
+            }
+            
+            createPerformanceChart();
+            populateTable(etfData);
+            createAllocationChart();
+            updateAllocationSliders();
+        });
+    </script>
+</body>
+</html>

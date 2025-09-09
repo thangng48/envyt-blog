@@ -3,6 +3,9 @@ languageCode = "en-us"
 title = "Me, against my thoughts"
 theme = "PaperMod"
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [params]
   defaultTheme = "light"
   mainSections = ["posts"]
