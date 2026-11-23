@@ -20,11 +20,11 @@ Lúc đó tôi muốn vợ tôi ở đấy để nghe tôi kể về phim. Lúc 
 
 Tôi mất vài phút để lấy lại cảm xúc. Bản piano của phim Laputa / Castle in the Sky Piano luôn giúp tôi khi cần.
 
-{{< youtube 0RKpf3rK57I >}}
+{{< youtube bvnA62FOECg >}}
 
 Có lần đồng nghiệp người Ấn nói với tôi là trong tiếng Tây Ban Nha, Laputa là bad word. Thấy tôi đặt nhiều test asset là Laputa nên đã đi search ý nghĩa. Tôi nói về lý do, và anh ấy bảo sẽ xem phim để cảm nhận, còn tôi đã biết 1 kiến thức mới.
 
-## Forrest Gump 
+## Forrest Gump
 
 Tôi có đem theo Forrest Gump và quyết định xem lại nó. Phim này rất lâu trước đã chiếu trên kênh nào đó của VTV hoặc VTC, không chỉ một lần, hồi bé tôi xem không hiểu ý nghĩa bộ phim, chỉ nhớ nhất trung sĩ Dan bị mất 2 chân, rồi 2 ông đi kéo tôm.
 
